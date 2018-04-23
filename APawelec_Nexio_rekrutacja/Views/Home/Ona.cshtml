@@ -1,0 +1,32 @@
+﻿@model APawelec_Nexio_rekrutacja.Models.Person
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ona</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm())
+        {
+            <p>Imię: @Html.TextBoxFor(x => x.Imie)</p>
+            <p>Wiek: @Html.EditorFor(x => x.Wiek)</p>
+            <p>Kolor oczu: @Html.DropDownListFor(
+                x => x.KoloOczu, new[]
+                    {
+                        new SelectListItem() { Text="Brązowy", Value="brazowy"},
+                        new SelectListItem() { Text="Niebieski", Value="niebieski"}
+                    }
+                )</p>
+            <p>Wzrost: @Html.TextBoxFor(x => x.Wzrost, new { @type = "number" })</p>
+            @Html.ActionLink("Dalej", "Wynik")
+        }
+    </div>
+</body>
+</html>
