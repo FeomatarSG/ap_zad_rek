@@ -18,7 +18,7 @@ namespace APawelec_Nexio_rekrutacja.Models
         public override bool IsValid(object value)
         {
             DateTime date;
-            if (DateTime.TryParse(value.ToString(), out date))
+            if (value != null && DateTime.TryParse(value.ToString(), out date))
             {
                 return date.AddYears(_minimumAge) < DateTime.Now;
             }

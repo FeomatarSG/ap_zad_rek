@@ -9,9 +9,6 @@ namespace APawelec_Nexio_rekrutacja.Controllers
 {
     public class HomeController : Controller
     {
-        //private Person on;
-        //private Person ona;
-
         // GET: Home
         public ActionResult Index()
         {
@@ -25,23 +22,30 @@ namespace APawelec_Nexio_rekrutacja.Controllers
         }
 
         [HttpPost]
-        public ViewResult On(Person person)
+        public ActionResult On(Person person)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var he = new Person
+                if (ModelState.IsValid)
                 {
-                    Imie = person.Imie,
-                    Wzrost = person.Wzrost,
-                    KoloOczu = person.KoloOczu,
-                    Wiek = person.Wiek
-                };
+                    var he = new Person
+                    {
+                        Imie = person.Imie,
+                        Wzrost = person.Wzrost,
+                        KolorOczu = person.KolorOczu,
+                        DataUrodzenia = person.DataUrodzenia
+                    };
 
-                Session["on"] = he;
-                return View(person);
+                    Session["on"] = he;
+                    return Redirect("Ona");
+                }
             }
-            else
+            catch(Exception ex)
+            { 
+                ModelState.AddModelError("error", ex.Message);
                 return View();
+            }
+            return View();
         }
 
         [HttpGet]
@@ -51,34 +55,42 @@ namespace APawelec_Nexio_rekrutacja.Controllers
         }
 
         [HttpPost]
-        public ViewResult Ona(Person person)
+        public ActionResult Ona(Person person)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var she = new Person
+                if (ModelState.IsValid)
                 {
-                    Imie = person.Imie,
-                    Wzrost = person.Wzrost,
-                    KoloOczu = person.KoloOczu,
-                    Wiek = person.Wiek
-                };
+                    var she = new Person
+                    {
+                        Imie = person.Imie,
+                        Wzrost = person.Wzrost,
+                        KolorOczu = person.KolorOczu,
+                        DataUrodzenia = person.DataUrodzenia
+                    };
+                    Session["ona"] = she;
 
-                Session["ona"] = she;
-                return View(person);
+                    return Redirect("Wynik");
+                }
             }
-            else
+            catch(Exception ex)
+            {
+                ModelState.AddModelError("error", ex.Message);
                 return View();
+            }
+            return View();
         }
 
-        [HttpGet]
-        public ViewResult Wynik(Person on, Person ona)
+        public ViewResult Wynik()
         {
-            Person p1 = null;
-            if(Session["ona"]!=null)
-            {
-                p1 = Session["ona"] as Person;
-                ViewBag.Info = "Imie ona: " + Session["ona"].ToString();// + " |Imie ona:" + Session["ona"].ToString();
-            }
+            Person man, woman;
+            man = Session["on"] as Person;
+            woman = Session["ona"] as Person;
+
+            if(man.Compare(woman))
+                ViewBag.Result = man.Imie + " pasuje do " + woman.Imie;
+            else
+                ViewBag.Result = man.Imie + " nie pasuja do " + woman.Imie;
             return View();
         }
     }
