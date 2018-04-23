@@ -7,11 +7,17 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Styles/StyleSheet.css" rel="stylesheet" />
     <title>Wynik</title>
 </head>
 <body>
-    <div> 
-        <h2>@ViewBag.Result</h2>
+    <div class="wynik"> 
+        <div class="card bg-info text-white">
+            <div class="card-body"><h1>Wynik</h1></div>
+        </div>
+        <br />
+        <h3>@ViewBag.Result</h3>
     </div>
 </body>
 </html>

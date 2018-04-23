@@ -22,11 +22,13 @@ namespace APawelec_Nexio_rekrutacja.Models
 
         public bool Compare(Person woman)
         {
-            if (Wzrost > woman.Wzrost + 7
-                && KolorOczu == woman.KolorOczu
-                && (DataUrodzenia.Year-woman.DataUrodzenia.Year)<5
-                && (DataUrodzenia.Year-woman.DataUrodzenia.Year)>-5
-                )
+            int i = 0;
+            if (Wzrost > woman.Wzrost + 7) i++;
+            if (KolorOczu == woman.KolorOczu) i++;
+            if ((DataUrodzenia.Year - woman.DataUrodzenia.Year) < 5
+                && (DataUrodzenia.Year - woman.DataUrodzenia.Year) > -5
+                ) i++;
+            if(i>1)
                 return true;
             else
                 return false;

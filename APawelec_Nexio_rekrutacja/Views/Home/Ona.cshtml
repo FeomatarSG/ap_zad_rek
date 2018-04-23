@@ -9,24 +9,38 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Styles/StyleSheet.css" rel="stylesheet" />
     <title>Ona</title>
 </head>
 <body>
+    <div class="card bg-danger text-white">
+        <div class="card-body"><h2>Ona</h2></div>
+    </div>
     <div>
         @using (Html.BeginForm())
         {
-            @Html.ValidationSummary()
+            <div class="content">
             <p>Imię: @Html.TextBoxFor(x => x.Imie)</p>
             <p>Wiek: @Html.EditorFor(x => x.DataUrodzenia)</p>
             <p>Kolor oczu: @Html.DropDownListFor(
                 x => x.KolorOczu, new[]
                     {
                             new SelectListItem() { Text="Brązowy", Value="brazowy"},
-                            new SelectListItem() { Text="Niebieski", Value="niebieski"}
+                            new SelectListItem() { Text="Niebieski", Value="niebieski"},
+                            new SelectListItem() { Text="Szare", Value="szare"},
+                            new SelectListItem() { Text="Czarnobrązowe", Value="czarnobrązowe"},
+                            new SelectListItem() { Text="Piwne", Value="piwne"}
+
                     }
                 ) </p>
-            <p>Wzrost: @Html.TextBoxFor(x => x.Wzrost, new { @type = "number" })</p>
-            <input type="submit" value="OK" />
+                <p>Wzrost: @Html.TextBoxFor(x => x.Wzrost, new { @type = "number" })</p>
+            </div>
+            
+            <div class="errorMessage">@Html.ValidationSummary()</div>
+            <div class="buttonDalej">
+                <input class="btn btn-secondary" type="submit" value="Dalej" />
+            </div>
         }
     </div>
 </body>

@@ -81,16 +81,22 @@ namespace APawelec_Nexio_rekrutacja.Controllers
             return View();
         }
 
-        public ViewResult Wynik()
+        public ActionResult Wynik()
         {
             Person man, woman;
             man = Session["on"] as Person;
             woman = Session["ona"] as Person;
 
-            if(man.Compare(woman))
-                ViewBag.Result = man.Imie + " pasuje do " + woman.Imie;
+            if (man == null)
+                Redirect("On");
             else
-                ViewBag.Result = man.Imie + " nie pasuja do " + woman.Imie;
+            { 
+                if(man.Compare(woman))
+                    ViewBag.Result = man.Imie + " pasuje do " + woman.Imie;
+                else
+                    ViewBag.Result = man.Imie + " nie pasuja do " + woman.Imie;
+                return View();
+            }
             return View();
         }
     }

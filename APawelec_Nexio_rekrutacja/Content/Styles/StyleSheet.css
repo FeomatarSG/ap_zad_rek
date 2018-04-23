@@ -1,0 +1,30 @@
+﻿body 
+{
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.errorMessage
+{
+    width:350px;
+    height: 200px;
+    color: #ff0000;
+    float:left;
+    margin-top: 40px;
+}
+.content {
+    width: 250px;
+    height: 180px;
+    float: left;
+    margin-top: 20px;
+}
+.buttonDalej
+{
+    text-align:right;
+    padding-right: 50px;
+    clear: both;
+}
+.wynik
+{
+    text-align: center;
+}
