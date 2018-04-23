@@ -16,7 +16,7 @@ namespace APawelec_Nexio_rekrutacja
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "On", id = UrlParameter.Optional }
             );
         }
     }
